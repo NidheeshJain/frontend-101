@@ -1,0 +1,212 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            border:0;
+            box-sizing: border-box;
+        }
+        
+        body{
+            
+        }
+
+        ::-webkit-scrollbar {
+            width: 0; 
+        }
+
+        #wrapper{
+            width: 100vw;
+            height:auto;
+            background-color:blueviolet;
+            opacity:0.5;
+            display: flex;
+            flex-wrap:wrap;
+            justify-content: space-around;
+            align-items:center;
+            padding-right: 20vw;
+            align-content: center;
+            padding:0 2vw 0 2vw;
+
+        }
+
+        #wrapper div{
+            background-color:pink ;
+            height:33.3333333vh;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom:5vh;
+            margin-top:5vh;
+        }
+
+        @media all and (min-width:150px) and (max-width:600px){
+
+            #wrapper div{
+            width:40vw;
+        }
+        
+        #wrapper div:nth-child(2n+1){
+            margin-right:50vw;
+        }
+
+       #wrapper div:nth-child(2n+1){
+            animation: Right1 2s ease infinite;
+        }
+
+        #wrapper div:nth-child(2n){
+            animation: Left1 2s ease infinite;
+        }
+
+        #wrapper div:nth-child(2n){
+            margin-left:50vw;
+        }
+
+        @keyframes Right1{
+            0%{transform: translateX(0vw);}
+            50%{transform: translateX(50vw);}
+            100%{transform: translateX(0vw);}
+        }
+
+        @keyframes Left1{
+            0%{transform: translateX(0vw);}
+            50%{transform: translateX(-50vw);}
+            100%{transform: translateX(0vw);}
+        }
+
+
+        }
+
+        @media all and (min-width: 601px) and (max-width:900px)
+        {
+
+            #wrapper div{
+            width:26vw;
+        }
+        
+        #wrapper div:nth-child(4n+2){
+            margin-right:32.5vw;
+        }
+
+       #wrapper div:nth-child(4n+1), #wrapper div:nth-child(4n+2){
+            animation: Right2 2s ease infinite;
+        }
+
+        #wrapper div:nth-child(4n+3), #wrapper div:nth-child(4n){
+            animation: Left2 2s ease infinite;
+        }
+
+        #wrapper div:nth-child(4n+3){
+            margin-left:32.5vw;
+        }
+
+        @keyframes Right2{
+            0%{transform: translateX(0vw);}
+            50%{transform: translateX(32.5vw);}
+            100%{transform: translateX(0vw);}
+        }
+
+        @keyframes Left2{
+            0%{transform: translateX(0vw);}
+            50%{transform: translateX(-32.5vw);}
+            100%{transform: translateX(0vw);}
+        }
+
+        }
+        
+
+        @media all and (min-width: 901px) and (max-width:1200px)
+        {
+
+        #wrapper div{
+            width:20vw;
+        }
+        
+        #wrapper div:nth-child(6n+3){
+            margin-right:25vw;
+        }
+
+        #wrapper div:nth-child(6n+3), #wrapper div:nth-child(6n+1), #wrapper div:nth-child(6n+2){
+            animation: Right3 2s ease infinite;
+        }
+
+        #wrapper div:nth-child(6n+4), #wrapper div:nth-child(6n+5), #wrapper div:nth-child(6n){
+            animation: Left3 2s ease infinite;
+        }
+
+        #wrapper div:nth-child(6n+4){
+            margin-left:25vw;
+        }
+
+        @keyframes Right3{
+            0%{transform: translateX(0vw);}
+            50%{transform: translateX(25vw);}
+            100%{transform: translateX(0vw);}
+        }
+
+        @keyframes Left3{
+            0%{transform: translateX(0vw);}
+            50%{transform: translateX(-25vw);}
+            100%{transform: translateX(0vw);}
+        }
+
+        }
+        
+        
+        @media all and (min-width: 1201px)
+        {
+
+        #wrapper div{
+            width:17vw;
+        }
+        
+        #wrapper div:nth-child(8n+4){
+            margin-right: 20vw;
+        }
+
+        #wrapper div:nth-child(8n+1), #wrapper div:nth-child(8n+2), #wrapper div:nth-child(8n+3), #wrapper div:nth-child(8n+4){
+            animation: Right4 2s ease infinite;
+        }
+
+        #wrapper div:nth-child(8n+5), #wrapper div:nth-child(8n+6), #wrapper div:nth-child(8n+7), #wrapper div:nth-child(8n){
+            animation: Left4 2s ease infinite;
+        }
+
+        #wrapper div:nth-child(8n+5){
+            margin-left:15vw;
+        }
+
+        @keyframes Right4{
+            0%{transform: translateX(0vw);}
+            50%{transform: translateX(15vw);}
+            100%{transform: translateX(0vw);}
+        }
+
+        @keyframes Left4{
+            0%{transform: translateX(0vw);}
+            50%{transform: translateX(-15vw);}
+            100%{transform: translateX(0vw);}
+        }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+        <div>D</div>
+        <div>E</div>
+        <div>F</div>
+        <div>G</div>
+        <div>H</div>
+        <div>I</div>
+        <div>J</div>
+        <div>K</div>
+        <div>L</div>
+    </div>
+</body>
