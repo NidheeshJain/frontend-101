@@ -12,7 +12,6 @@
                 width:400px;
                 height:750px;
                 margin:40px auto 40px auto;
-                background-color: wheat;
                 padding-top:50px;
                 padding-left:50px;
             }
@@ -32,7 +31,7 @@
                 background-color: black;
                 border:5px solid black;
                 position: absolute;
-                box-shadow: inset 0px 0px 17px 7px rgba(255,255,255,0.62)
+                box-shadow: inset 0px 0px 11px 4px rgba(255,255,255,0.62)
 ;
             }
 
@@ -67,6 +66,51 @@
                 margin-top:165px;
                 height:60px;
             }
+
+            .notch{
+                position: absolute;
+                margin-top:16px;
+                margin-left:calc(50% - 70px);
+                width:140px;
+                height:22px;
+                border-bottom-left-radius:18px ;
+                border-bottom-right-radius:18px ;
+                background-color: black;
+                z-index:100;
+            }
+
+            .screen{
+                width:92%;
+                height:96.2%;
+                margin:4%;
+                border-radius:30px;
+                background:radial-gradient(circle at 0% 20px,rgba(235,69,138,1), rgba(235,69,138,1) 10%, rgba(230,190,181,0) 50%),
+                radial-gradient(circle at 100% 120px,rgba(70,68,218,1), rgba(70,68,218,0.8) 20%, rgba(230,190,181,0) 60%),
+                radial-gradient(circle at 0% 75%,rgba(230,190,181, 1), rgba(235,123,102,0.7) 30%, rgba(235,123,102,0.8) 50%);
+                background-color:white;
+                z-index:99;
+            }
+
+            .speaker{
+                position:absolute;
+                width:40%;
+                height:4px;
+                background-color:rgba(255, 255, 255, 0.15) ;
+                margin-left:30%;
+                margin-top:7px;
+                border-radius: 2px;
+            }
+
+            .camera{
+                position: absolute;
+                width:8px;
+                height:8px;
+                border-radius:4px;
+                background-color:rgb(42, 35, 87);
+                margin-left:80%;
+                margin-top:5px;
+
+            }
  
         </style>
     </head>
@@ -77,8 +121,12 @@
                 <div class="button volume-up"></div>
                 <div class="button volume-down"></div>
                 <div class="button power"></div>
+                <div class="notch">
+                    <div class="speaker"></div>
+                    <div class="camera"></div>
+                </div>
                 <div id="inner-frame">
-
+                    <div class="screen"></div>
                 </div>
 
             </div>
