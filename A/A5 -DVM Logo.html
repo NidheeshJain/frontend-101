@@ -1,0 +1,111 @@
+<html>
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+
+        #D {
+            stroke-dashoffset: 1309;
+            animation: dash1 1s linear forwards, fill1 1s linear forwards;
+            animation-delay: 0s, 1s;
+        }
+
+        @keyframes dash1 {
+            from {
+                stroke-dasharray: 0 3249;
+            }
+
+            to {
+                stroke-dasharray: 3249 0;
+            }
+        }
+
+        @keyframes fill1 {
+            from {
+                fill: black;
+            }
+
+            to {
+                fill: white;
+            }
+        }
+
+        #V {
+            stroke-dasharray: 0 2175;
+            stroke-dashoffset: 136;
+            animation: dash2 1s linear forwards, fill2 1s linear forwards;
+            animation-delay: 0.3s, 1.3s;
+        }
+
+        @keyframes dash2 {
+            from {
+                stroke-dasharray: 0 2175;
+            }
+
+            to {
+                stroke-dasharray: 2175 0;
+            }
+        }
+
+        @keyframes fill2 {
+            from {
+                fill: black;
+            }
+
+            to {
+                fill: #ff3f8a;
+            }
+        }
+
+        #M {
+            stroke-dasharray: 2046;
+            stroke-dashoffset: 2046;
+            animation: dash3 1s linear forwards, fill1 1s linear forwards;
+            animation-delay: 0.6s, 1.6s;
+        }
+
+        @keyframes dash3 {
+            from {
+                stroke-dashoffset: 2046;
+            }
+
+            to {
+                stroke-dashoffset: 4092;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 1119 964"
+        style="height:70vh; margin-left:calc(50vw - 41vh); margin-top:13vh;" xml:space="preserve">
+
+        <path d="M316 761l-70-72-135 84-3-522 317 303 2-137L1 17 0 954z" id="D" fill="#000" stroke="#fff"
+            stroke-width="4" stroke-miterlimit="10" />
+        <!-- 3249 -->
+
+        <path d="M268 640l246 224 433-443-1-154-432 440-243-203z" id="V" fill="#000" stroke="#ff3f8a" stroke-width="4"
+            stroke-miterlimit="10" />
+        <!-- 2175 -->
+
+        <path d="M997 106L1118 0l1 964-123-89z" id="M" fill="#000" stroke="#fff" stroke-width="4"
+            stroke-miterlimit="10" />
+        <!-- 2046 -->
+    </svg>
+</body>
+
+</html>
