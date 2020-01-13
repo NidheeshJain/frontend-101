@@ -1,80 +1,140 @@
 <html>
-    <head>
-        <style>
-            .clock{
-                border-radius:50% 50%;
-                width:500px;
-                height:500px;
-                background-color: teal;
-                margin-left: auto;
-                margin-right:auto;
-                margin-top:calc( 50vh - 250px );
-                display:flex;
-            }
-            
-            .second_hand{
-                width:3px;
-                height:200px;
-                background-color: aqua;
-                position: absolute;
-                margin-left:250px;
-                margin-top:50px;
-                transform-origin: center bottom;
-                z-index:0;
-            }
 
-            .minute_hand{
-                width:3px;
-                height:170px;
-                background-color: bisque;
-                position: absolute;
-                margin-left:250px;
-                margin-top:80px;                
-                transform-origin: center bottom;
-                z-index:50;
-            }
+<head>
+    <style>
+        .clock {
+            border-radius: 50% 50%;
+            width: 500px;
+            height: 500px;
+            background-color: teal;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: calc(50vh - 250px);
+            display: flex;
+        }
 
-            .hour_hand{
-                width:3px;
-                height:120px;
-                background-color: white;
-                position: absolute;
-                margin-left:250px;
-                margin-top:130px;
-                transform-origin: center bottom;
-                z-index:100;
-            }
+        .second_hand {
+            width: 3px;
+            height: 200px;
+            background-color: aqua;
+            position: absolute;
+            margin-left: 250px;
+            margin-top: 50px;
+            transform-origin: center bottom;
+            z-index: 0;
+        }
 
-        </style>
-    </head>
-    <body onload="Clock(); setInterval('Clock()', 100 )">
-        <div class="clock">
-            <div class="hour_hand" id="hr"></div>
-            <div class="minute_hand" id="min"></div>
-            <div class="second_hand" id="sec"></div>
-        </div>
+        .minute_hand {
+            width: 3px;
+            height: 170px;
+            background-color: bisque;
+            position: absolute;
+            margin-left: 250px;
+            margin-top: 80px;
+            transform-origin: center bottom;
+            z-index: 50;
+        }
+
+        .hour_hand {
+            width: 3px;
+            height: 120px;
+            background-color: white;
+            position: absolute;
+            margin-left: 250px;
+            margin-top: 130px;
+            transform-origin: center bottom;
+            z-index: 100;
+        }
+
+        #clock1 {
+            margin-left: calc(50vw - 250px);
+            margin-top: calc(50vh - 250px);
+        }
+    </style>
+</head>
+
+<body onload="Clock(); setInterval('Clock()', 100 )">
+    <div class="clock" id="clock0">
+        <div class="hour_hand" id="hr"></div>
+        <div class="minute_hand" id="min"></div>
+        <div class="second_hand" id="sec"></div>
+    </div>
 
 
-        <script>
-            function Clock()
-            {
-                var time = new Date()
-                var minutes = time.getMinutes();
-                var hours = time.getHours();
-                var seconds = time.getSeconds();
+    <canvas id="clock1" width="500px" height="500px">
+        Your browser does not support the HTML5 canvas tag.</canvas>
 
-                var hours_angle, minutes_angle, seconds_angle;
-                
-                hours = (( hours > 12 ) ? hours - 12 : hours);
-                
-                hours_angle = ((hours * 30) + (minutes * 0.5));
-                minutes_angle = ((minutes * 6) + (seconds * 0.1));
-                seconds_angle = (seconds * 6);
-                document.getElementById("hr").style.transform = "rotate(" + hours_angle + "deg)";
-                document.getElementById("min").style.transform = "rotate(" + minutes_angle + "deg)";
-                document.getElementById("sec").style.transform = "rotate(" + seconds_angle + "deg)";
 
-            }
-        </script>
-    </body>
+    <script>
+        function Clock() {
+            var time = new Date()
+            var minutes = time.getMinutes();
+            var hours = time.getHours();
+            var seconds = time.getSeconds();
+
+            var hours_angle, minutes_angle, seconds_angle;
+
+            hours = (hours % 12);
+
+            hours_angle = ((hours * 30) + (minutes * 0.5));
+            minutes_angle = ((minutes * 6) + (seconds * 0.1));
+            seconds_angle = (seconds * 6);
+            document.getElementById("hr").style.transform = "rotate(" + hours_angle + "deg)";
+            document.getElementById("min").style.transform = "rotate(" + minutes_angle + "deg)";
+            document.getElementById("sec").style.transform = "rotate(" + seconds_angle + "deg)";
+
+        }
+
+        var canvas = document.getElementById("clock1");
+        var ctx = canvas.getContext("2d");
+        var radius = canvas.height / 2;
+        ctx.translate(radius, radius);
+        radius = radius * 0.95
+        setInterval(Clock_fxn, 100);
+
+
+        function Clock_fxn() {
+            Face(ctx, radius);
+            Time(ctx, radius);
+        }
+
+        function Face(ctx, radius) {
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = 'teal';
+            ctx.fill();
+        }
+
+
+        function Time(ctx, radius) {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            //hour
+            hours = hours % 12;
+            hours_angle = (hours * Math.PI / 6) + (minutes * Math.PI / (360));
+            hand(ctx, hours_angle, 120, 'white');
+            //minute
+            minutes_angle = (minutes * Math.PI / 30) + (seconds * Math.PI / (1800));
+            hand(ctx, minutes_angle, 170, 'bisque');
+            // second
+            seconds_angle = (seconds * Math.PI / 30);
+            hand(ctx, seconds_angle, 200, 'aqua');
+        }
+
+        function hand(ctx, pos, length, color) {
+            ctx.beginPath();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 3;
+            ctx.moveTo(0, 0);
+            ctx.rotate(pos);
+            ctx.lineTo(0, -length);
+            ctx.stroke();
+            ctx.rotate(-pos);
+        }
+    </script>
+
+</body>
+
 </html>
