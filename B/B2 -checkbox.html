@@ -1,0 +1,114 @@
+<html>
+
+<head>
+    <title></title>
+    <style>
+    .table{
+        margin-left:auto;
+        margin-right:auto;
+        width:40%;
+        height:50%;
+        margin-top:25vh;
+    }
+    tr, td{
+        border: 2px solid black;
+        text-align: center;
+    }
+    input{
+        
+    }
+    </style>
+</head>
+
+<body>
+    <table class="table">
+        <tr>
+            <td><input type="checkbox" id="0" onclick="lastCheckedDetector(this.id)"></td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="1" onclick="lastCheckedDetector(this.id)"></td>
+            <td>B</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="2" onclick="lastCheckedDetector(this.id)"></td>
+            <td>C</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="3" onclick="lastCheckedDetector(this.id)"></td>
+            <td>D</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="4" onclick="lastCheckedDetector(this.id)"></td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="5" onclick="lastCheckedDetector(this.id)"></td>
+            <td>F</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="6" onclick="lastCheckedDetector(this.id)"></td>
+            <td>G</td>
+        </tr>
+    </table>
+    <script>
+
+    
+    var shift=0;
+    var fullList = document.getElementsByTagName('input');
+    var lastChecked, newChecked;
+
+    function lastCheckedDetector(id){
+        if (document.getElementById(id).checked == true && shift==0){
+        lastChecked=id;
+        }
+        if (document.getElementById(id).checked == false){
+            lastChecked=undefined;
+            console.log(lastChecked)
+        }
+        if (document.getElementById(id).checked == true && lastChecked==undefined){
+        lastChecked=id;
+        }
+    }
+
+    
+    window.addEventListener("keydown", function(e){
+        if (e.key=="Shift"){
+            shift=1;
+        }
+    })
+
+    window.addEventListener("keyup", function(e){
+        if (e.key=="Shift"){
+            shift=0;
+        }
+    })
+    for (var input of fullList)
+    {
+    input.addEventListener("click", function f(){
+        if (shift==1 && lastChecked!=undefined){
+            newChecked=this.id;
+            if (fullList[lastChecked].checked==true)
+            {
+                if ((newChecked) > lastChecked)
+                {
+                    for(i=lastChecked; i<=this.id; i++)
+                        {
+                        fullList[i].checked=true;
+                        }
+                }
+                else if ((newChecked)<lastChecked)
+                {
+                    for(i=this.id; i<=lastChecked; i++)
+                        {
+                        fullList[i].checked=true;
+                        }
+                }
+            }
+            lastChecked = this.id;
+        }
+
+    } )
+    }
+    </script>
+</body>
