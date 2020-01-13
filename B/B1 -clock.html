@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <style>
+            .clock{
+                border-radius:50% 50%;
+                width:500px;
+                height:500px;
+                background-color: teal;
+                margin-left: auto;
+                margin-right:auto;
+                margin-top:calc( 50vh - 250px );
+                display:flex;
+            }
+            
+            .second_hand{
+                width:3px;
+                height:200px;
+                background-color: aqua;
+                position: absolute;
+                margin-left:250px;
+                margin-top:50px;
+                transform-origin: center bottom;
+                z-index:0;
+            }
+
+            .minute_hand{
+                width:3px;
+                height:170px;
+                background-color: bisque;
+                position: absolute;
+                margin-left:250px;
+                margin-top:80px;                
+                transform-origin: center bottom;
+                z-index:50;
+            }
+
+            .hour_hand{
+                width:3px;
+                height:120px;
+                background-color: white;
+                position: absolute;
+                margin-left:250px;
+                margin-top:130px;
+                transform-origin: center bottom;
+                z-index:100;
+            }
+
+        </style>
+    </head>
+    <body onload="Clock(); setInterval('Clock()', 100 )">
+        <div class="clock">
+            <div class="hour_hand" id="hr"></div>
+            <div class="minute_hand" id="min"></div>
+            <div class="second_hand" id="sec"></div>
+        </div>
+
+
+        <script>
+            function Clock()
+            {
+                var time = new Date()
+                var minutes = time.getMinutes();
+                var hours = time.getHours();
+                var seconds = time.getSeconds();
+
+                var hours_angle, minutes_angle, seconds_angle;
+                
+                hours = (( hours > 12 ) ? hours - 12 : hours);
+                
+                hours_angle = ((hours * 30) + (minutes * 0.5));
+                minutes_angle = ((minutes * 6) + (seconds * 0.1));
+                seconds_angle = (seconds * 6);
+                document.getElementById("hr").style.transform = "rotate(" + hours_angle + "deg)";
+                document.getElementById("min").style.transform = "rotate(" + minutes_angle + "deg)";
+                document.getElementById("sec").style.transform = "rotate(" + seconds_angle + "deg)";
+
+            }
+        </script>
+    </body>
+</html>
