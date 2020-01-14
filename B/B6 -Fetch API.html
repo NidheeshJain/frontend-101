@@ -1,0 +1,153 @@
+<html>
+
+<head>
+    <style>
+        input {
+            width: 40vw;
+            height: 50px;
+            margin-left: 30vw;
+            margin-top: 20vh;
+            font-size: 20px;
+            display: block;
+        }
+
+        button {
+            display: inline-block;
+            height: 50px;
+            margin-left: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        #button-div {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: aqua;
+            display: block;
+            border-radius: 50%;
+        }
+
+        #content {
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .desc {
+            margin-left: auto;
+            margin-right: auto;
+            width: 500px;
+            height: 100px;
+            z-index: 100;
+            font-size: 20px;
+            margin-top: 40px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <input type="text" id="username">
+    <div id="button-div">
+        <button class="button1" onclick="api()">Fetch api</button>
+        <button class="button2" onclick="xml()">XML/ HTTP Request</button>
+        <button class="button3">jQuery/ AJAX</button>
+    </div>
+    <div id="content">
+        <img class="image" id="img"></img>
+        <div class="desc" id="desc">Welcome Nigga!</div>
+    </div>
+    <script>
+
+        var i = 0;
+
+        function displayer(Response) {
+            if (i == 0) {
+                document.getElementById("img").src = Response.avatar_url;
+                if (Response.name == null || Response.name == undefined) {
+                    Response.name = 'Name not available';
+                }
+                if (Response.bio == null || Response.bio == undefined) {
+                    Response.bio = 'Bio not available';
+                }
+                document.getElementById("desc").innerHTML = Response.name + '<br/><br />' + Response.bio;
+            }
+            else {
+                document.getElementById("username").value = '';
+                alert('Cannot Retrieve data');
+            }
+        }
+
+        function api() {
+            var username = document.getElementById("username").value.toString();
+            fetch('https://api.github.com/users/' + username)
+                .then((response) => {
+                    if (response.status >= 200 && response.status <= 299) {
+                        return (response.json());
+                        i = 0;
+                    }
+                    else {
+                        i = 1;
+                    }
+                })
+                .then((jsonResponse) => {
+                    displayer(jsonResponse);
+                })
+                .catch(error => console.error(error));
+        }
+
+        function xml() {
+            var username = document.getElementById("username").value.toString();
+
+            let xhr = new XMLHttpRequest();
+
+            xhr.open('GET', 'https://api.github.com/users/' + username);
+            xhr.send();
+            xhr.responseType = 'json';
+
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status <= 299) {
+                    i = 0;
+                    displayer(xhr.response);
+                } else {
+                    i = 1;
+                    displayer('ghhgv');
+                }
+            };
+
+            xhr.onerror = function () {
+                alert("Request failed");
+            };
+        }
+
+
+        $(document).ready(function () {
+            $(".button3").click(function () {
+                var username = document.getElementById("username").value.toString();
+                var url = 'https://api.github.com/users/' + username;
+
+                $.ajax({
+                    url: url,
+                    success: function (data) {
+                        i=0;
+                        displayer(data);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        i=1;
+                        displayer('hgvh');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
