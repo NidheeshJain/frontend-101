@@ -1,0 +1,16 @@
+{
+  "name": "DVM",
+  "description": "DVM website counter",
+  "version": "1.0",
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["https://bits-bosm.org/*", "https://bits-oasis.org/*", "http://bits-apogee.org/*"],
+      "all_frames": true,
+      "js": ["counter.js"]
+    }
+  ],
+  "permissions": [
+    "storage"
+  ]
+}
