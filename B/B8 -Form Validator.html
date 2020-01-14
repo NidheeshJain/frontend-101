@@ -1,0 +1,173 @@
+<html>
+
+<head>
+    <style>
+        select {
+            overflow: hidden;
+            width: 100px;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        button {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <form id="form">
+
+            (Fields marked with * are mandatory)<br><br>
+            Name *<br>
+            <input type="text" name="name">
+
+            <br><br>
+
+            E-Mail *<br>
+            <input type="text" name="email">
+            <br><br>
+
+            Phone *
+            <br>
+            <input type="text" name="phone">
+
+            <br><br>
+
+            Password *
+            <br>
+            <input type="password" name="password">
+
+            <br><br>
+
+            Events for Participation
+            <br>
+            <select multiple size="7">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+            </select>
+
+            <br><br>
+
+            Year of Study
+            <br>
+            <input type="text" name="year">
+
+            <br><br>
+
+            Gender
+            <br>
+            <select>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+
+            <br><br>
+            <!-- <input type="submit" value="Submit" onclick="validator()"> -->
+            <!-- <input type="button" value="pass" onclick="validator()"> -->
+        </form>
+
+        <button id="submit" onclick="validator()">Submit</button>
+    </div>
+    <script>
+
+        // function submit() {
+        //     var format_email= /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+        //     if (name != '') {
+        //         if (format_email.test())
+        //     }
+        //     else{
+        //         console.log('please enter name');
+        //     }
+        // }
+
+        function name_validator() {
+            var name = document.getElementsByName('name')[0].value;
+            if (/[A-Z a-z]{2,}/.test(name)) {
+                console.log('name approved');
+                return true;
+            }
+            else {
+                console.log('Please enter correct name');
+                return false;
+            }
+        }
+
+        function email_validator() {
+            var email = document.getElementsByName('email')[0].value;
+            console.log(email);
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                console.log('email approved');
+                return (true);
+            }
+            else {
+                console.log('Please enter correct email');
+                return false;
+            }
+        }
+
+        function phone_validator() {
+            var phone = document.getElementsByName('phone')[0].value;
+            console.log(phone);
+            if (/[0-9]{10}/.test(phone)) {
+                console.log('phone number approved');
+                return true;
+            }
+            else {
+                console.log('Please enter correct phone number');
+                return false;
+            }
+        }
+
+        function password_validator() {
+            var format1 = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            var format2 = /^[\x20-\x7F]*$/
+            var name = document.getElementsByName('name')[0].value;
+            var password = document.getElementsByName('password')[0].value;
+            if ((password.length < 15) && (password.length > 8)) {
+                if (password.search((new RegExp(name, 'i')) == -1) || name.length != 0) {
+                    if (format1.test(password)) {
+                        if (format2.test(password)) {
+                            console.log('password approved');
+                            return true;
+                        }
+                        else {
+                            console.log('The password should contain characters only from US Keyboard');
+                            return false;
+                        }
+                    } else {
+                        console.log('password should contain atleast one special characters');
+                        return false;
+                    }
+                }
+                else {
+                    console.log('password should not contain name');
+                    return false;
+                }
+            }
+            else {
+                console.log('password is not of desired length');
+                return false;
+            }
+        }
+
+        function validator() {
+            if (name_validator() && email_validator() && phone_validator() && password_validator()) {
+                document.getElementById('form').submit();
+            }
+            else {
+            }
+        }
+    </script>
+
+</body>
